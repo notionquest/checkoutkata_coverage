@@ -1,0 +1,1 @@
+# checkoutkata unit test coverage

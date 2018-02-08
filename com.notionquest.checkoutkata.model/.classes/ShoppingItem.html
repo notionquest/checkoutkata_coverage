@@ -1,0 +1,126 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ShoppingItem</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.notionquest.checkoutkata.model</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ShoppingItem (com.notionquest.checkoutkata.model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ShoppingItem</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (3/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    54.5%
+  </span>
+  <span class="absValue">
+    (6/ 11)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.notionquest.checkoutkata.model;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.io.Serializable;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;/**
+<i>6</i>&nbsp; * Selected shopping items
+<i>7</i>&nbsp; */
+<i>8</i>&nbsp;public class ShoppingItem implements Serializable {
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;    private static final long serialVersionUID = 347800599738820448L;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;    private String stockKeepingUnit;
+<i>13</i>&nbsp;    private Double quantity;
+<i>14</i>&nbsp;
+<b class="fc"><i>15</i>&nbsp;    public ShoppingItem(String stockKeepingUnit, Double quantity) {</b>
+<b class="fc"><i>16</i>&nbsp;        this.stockKeepingUnit = stockKeepingUnit;</b>
+<b class="fc"><i>17</i>&nbsp;        this.quantity = quantity;</b>
+<b class="fc"><i>18</i>&nbsp;    }</b>
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    public String getStockKeepingUnit() {
+<b class="fc"><i>21</i>&nbsp;        return stockKeepingUnit;</b>
+<i>22</i>&nbsp;    }
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    public void setStockKeepingUnit(String stockKeepingUnit) {
+<b class="nc"><i>25</i>&nbsp;        this.stockKeepingUnit = stockKeepingUnit;</b>
+<b class="nc"><i>26</i>&nbsp;    }</b>
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    public Double getQuantity() {
+<b class="fc"><i>29</i>&nbsp;        return quantity;</b>
+<i>30</i>&nbsp;    }
+<i>31</i>&nbsp;
+<i>32</i>&nbsp;    public void setQuantity(Double quantity) {
+<b class="nc"><i>33</i>&nbsp;        this.quantity = quantity;</b>
+<b class="nc"><i>34</i>&nbsp;    }</b>
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;    @Override
+<i>37</i>&nbsp;    public String toString() {
+<b class="nc"><i>38</i>&nbsp;        return &quot;ShoppingItem{&quot; +</b>
+<i>39</i>&nbsp;                &quot;stockKeepingUnit=&#39;&quot; + stockKeepingUnit + &#39;\&#39;&#39; +
+<i>40</i>&nbsp;                &quot;, quantity=&quot; + quantity +
+<i>41</i>&nbsp;                &#39;}&#39;;
+<i>42</i>&nbsp;    }
+<i>43</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2018-02-08 19:35</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,139 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: CheckoutServiceImpl</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.notionquest.checkoutkata.service</a> ]
+</div>
+
+<h1>Coverage Summary for Class: CheckoutServiceImpl (com.notionquest.checkoutkata.service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CheckoutServiceImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (19/ 19)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.notionquest.checkoutkata.service;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.notionquest.checkoutkata.exception.CheckoutKataApplicationException;
+<i>4</i>&nbsp;import com.notionquest.checkoutkata.model.ItemPrice;
+<i>5</i>&nbsp;import com.notionquest.checkoutkata.model.ShoppingItem;
+<i>6</i>&nbsp;import com.notionquest.checkoutkata.util.Constants;
+<i>7</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>8</i>&nbsp;import org.springframework.stereotype.Service;
+<i>9</i>&nbsp;import org.springframework.util.Assert;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import java.util.List;
+<i>12</i>&nbsp;import java.util.Map;
+<i>13</i>&nbsp;import java.util.Set;
+<i>14</i>&nbsp;import java.util.stream.Collectors;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;@Service(&quot;checkoutService&quot;)
+<b class="fc"><i>17</i>&nbsp;public class CheckoutServiceImpl implements CheckoutService {</b>
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    @Autowired
+<i>20</i>&nbsp;    private CalculateItemPrice calculateItemPrice;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;    @Override
+<i>23</i>&nbsp;    public Double calculateTotal(List&lt;ShoppingItem&gt; shoppingItems, Set&lt;ItemPrice&gt; itemPrices) {
+<i>24</i>&nbsp;
+<b class="fc"><i>25</i>&nbsp;        Assert.notEmpty(shoppingItems, Constants.SHOPPING_ITEM_EMPTY);</b>
+<b class="fc"><i>26</i>&nbsp;        Assert.notEmpty(itemPrices, Constants.ITEM_PRICE_EMPTY);</b>
+<b class="fc"><i>27</i>&nbsp;        Double totalAmt = 0.0;</b>
+<b class="fc"><i>28</i>&nbsp;        if (validateShoppingItems(shoppingItems, itemPrices)) {</b>
+<i>29</i>&nbsp;
+<b class="fc"><i>30</i>&nbsp;            Map&lt;String, Double&gt; shoppingItemsSum = shoppingItems.stream().collect(</b>
+<b class="fc"><i>31</i>&nbsp;                    Collectors.groupingBy(ShoppingItem::getStockKeepingUnit,</b>
+<b class="fc"><i>32</i>&nbsp;                            Collectors.summingDouble(ShoppingItem::getQuantity)));</b>
+<i>33</i>&nbsp;
+<b class="fc"><i>34</i>&nbsp;            for (Map.Entry&lt;String, Double&gt; shoppingItemEntry : shoppingItemsSum.entrySet()) {</b>
+<b class="fc"><i>35</i>&nbsp;                totalAmt = totalAmt + calculateItemPrice.getItemPrice(shoppingItemEntry.getKey(), shoppingItemEntry.getValue(), itemPrices);</b>
+<b class="fc"><i>36</i>&nbsp;                if (totalAmt.isNaN() || totalAmt.isInfinite()) {</b>
+<b class="fc"><i>37</i>&nbsp;                    throw new CheckoutKataApplicationException(Constants.ARITHMETIC_OVERFLOW);</b>
+<i>38</i>&nbsp;                }
+<i>39</i>&nbsp;
+<b class="fc"><i>40</i>&nbsp;            }</b>
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;
+<b class="fc"><i>43</i>&nbsp;        } else {</b>
+<b class="fc"><i>44</i>&nbsp;            throw new CheckoutKataApplicationException(Constants.SHOPPING_ITEMS_NOT_PRESENT_IN_PRICE_LIST);</b>
+<i>45</i>&nbsp;        }
+<b class="fc"><i>46</i>&nbsp;        return totalAmt;</b>
+<i>47</i>&nbsp;    }
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    private boolean validateShoppingItems(List&lt;ShoppingItem&gt; shoppingItems, Set&lt;ItemPrice&gt; itemPrices) {
+<b class="fc"><i>50</i>&nbsp;        Set&lt;String&gt; stockKeepingUnitInItemPrices = itemPrices.stream().map(e -&gt; e.getStockKeepingUnit()).collect(Collectors.toSet());</b>
+<i>51</i>&nbsp;
+<b class="fc"><i>52</i>&nbsp;        boolean allShoppingItemsFound = shoppingItems.stream().allMatch(e -&gt; stockKeepingUnitInItemPrices.contains(e.getStockKeepingUnit()));</b>
+<i>53</i>&nbsp;
+<b class="fc"><i>54</i>&nbsp;        return allShoppingItemsFound;</b>
+<i>55</i>&nbsp;    }
+<i>56</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2018-02-08 19:35</div>
+</div>
+</body>
+</html>

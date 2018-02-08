@@ -1,0 +1,65 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: CalculateItemPrice</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.notionquest.checkoutkata.service</a> ]
+</div>
+
+<h1>Coverage Summary for Class: CalculateItemPrice (com.notionquest.checkoutkata.service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">CalculateItemPrice</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.notionquest.checkoutkata.service;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.notionquest.checkoutkata.model.ItemPrice;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.util.Set;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;public interface CalculateItemPrice {
+<i>8</i>&nbsp;    /**
+<i>9</i>&nbsp;     *
+<i>10</i>&nbsp;     * Calculates the price for a each item
+<i>11</i>&nbsp;     *
+<i>12</i>&nbsp;     * @param stockKeepingUnit
+<i>13</i>&nbsp;     * @param quantity
+<i>14</i>&nbsp;     * @param itemPrices
+<i>15</i>&nbsp;     * @return
+<i>16</i>&nbsp;     */
+<i>17</i>&nbsp;    Double getItemPrice(String stockKeepingUnit, Double quantity, Set&lt;ItemPrice&gt; itemPrices);
+<i>18</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2018-02-08 19:35</div>
+</div>
+</body>
+</html>
